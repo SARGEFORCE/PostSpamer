@@ -24,5 +24,15 @@ namespace PostSpamer
         {
             InitializeComponent();
         }
+
+        private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This program cannot be run in DOS mode!", "ATTENTION!");
+        }
     }
 }
