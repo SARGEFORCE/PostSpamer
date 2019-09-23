@@ -60,6 +60,9 @@
     </ApplicationDefinition>
     <Compile Include="library\PostSheduler.cs" />
     <Compile Include="library\PostSpamerService.cs" />
+    <Compile Include="library\Sender.cs" />
+    <Compile Include="library\Server.cs" />
+    <Compile Include="library\TestClass.cs" />
     <Compile Include="library\Variables.cs" />
     <Compile Include="Spamer.cs" />
     <Page Include="MainWindow.xaml">
@@ -104,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
