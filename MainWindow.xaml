@@ -1,12 +1,199 @@
-﻿<Window x:Class="PostSpamer.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PostSpamer"
+        xmlns:data="clr-namespace:PostSpamer.library"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:db="clr-namespace:PostSpamer.library.Linq2SQL"
+        xmlns:controls="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="PostSpamer" Height="450" Width="803" Icon="mail.png">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Сохранить"/>
+                <Separator/>
+                <MenuItem Header="Выход" Click="ExitMenuItem_OnClick"/>
+            </MenuItem>
+            <MenuItem Header="Сервис">
+                <MenuItem Header="Параметры"/>
+            </MenuItem>
+            <MenuItem Header="Помощь">
+                <MenuItem Header="О программе" Click="AboutMenuItem_OnClick"/>
+                <MenuItem Header="Создатели"/>
+                <MenuItem Header="Поддержать проект"/>
+
+            </MenuItem>
+            <controls:TabSwitcher Height="18" Width="100" 
+                                  LeftButtonClick="TabSwitcher_OnLeftButtonClick" 
+                                  RightButtonClick="TabSwitcher_OnRightButtonClick"
+                                  LeftButtonVisible="False"/>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock><Run Text="Готов к рассылке спама!"/></TextBlock>
+            <StatusBarItem Width="auto">
+                <ProgressBar Value="50" Width="220" Height ="10"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <TabControl Name="MainTabControl">
+            <TabItem Header="Рассылка">
+                <Grid>
+                    <Grid.Resources>
+                        <db:PostSpamerDBDataContext x:Key="DataBase"/>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="113*"/>
+                        <ColumnDefinition Width="245*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <ToolBarTray Grid.Row="0" Grid.ColumnSpan="2">
+                        <!--======================================================-->
+                        <ToolBar Band="0" BandIndex="0">
+                            <Label Width="85" Content="Отправители"/>
+                            <ComboBox MinWidth="75" MaxWidth="100" ItemsSource="{x:Static data:TestClass.Senders}" DisplayMemberPath="Name" SelectedIndex="0"/>
+
+                            <Button ToolTip="Редактировать">
+                                <fa:ImageAwesome Height="16" Icon="Edit"/>
+                            </Button>
+                            <Button ToolTip="Создать">
+                                <fa:ImageAwesome Height="16" Icon="Plus"/>
+                            </Button>
+                            <Button ToolTip="Удалить">
+                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
+                            </Button>
+                        </ToolBar>
+                        <!--======================================================-->
+                        <ToolBar BandIndex="1">
+                            <Label Content="Серверы"/>
+                            <ComboBox MinWidth="75" MaxWidth="100" ItemsSource="{x:Static data:TestClass.Servers}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type data:Server}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Adress}" Margin="3,0,0,0" Opacity="0.6"/>
+                                            <TextBlock Text="{Binding Port, StringFormat=:\{0\}}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button ToolTip="Редактировать">
+                                <fa:ImageAwesome Height="16" Icon="Edit"/>
+                            </Button>
+                            <Button ToolTip="Создать">
+                                <fa:ImageAwesome Height="16" Icon="Plus"/>
+                            </Button>
+                            <Button ToolTip="Удалить">
+                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
+                            </Button>
+                        </ToolBar>
+                        <!--======================================================-->
+                        <ToolBar BandIndex="2">
+                            <Label Content="Перейти в планировщик:"/>
+                            <Button Click="PlannerButton_Click">
+                                <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="DarkBlue"/>                                
+                            </Button>
+                        </ToolBar>
+                        <!--======================================================-->
+                        <ToolBar Band="1">
+                            <Label Width="85" Content="Получатели"/>
+                            <Button ToolTip="Редактировать">
+                                <fa:ImageAwesome Height="16" Icon="Edit"/>
+                            </Button>
+                            <Button ToolTip="Создать">
+                                <fa:ImageAwesome Height="16" Icon="Plus"/>
+                            </Button>
+                            <Button ToolTip="Удалить">
+                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" 
+                              ItemsSource="{Binding Recipients, Source={StaticResource DataBase}}"
+                              GridLinesVisibility="Vertical" AlternatingRowBackground="DarkGray" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Планировщик">
+                <DockPanel>
+                    <GroupBox Header="Управление">
+                        <StackPanel>
+                            <TextBlock Text="Календарь"/>
+                            <Calendar/>
+                            <StackPanel>
+                                <Button HorizontalContentAlignment="Stretch">
+                                    <DockPanel Margin="20,0">
+                                        <fa:ImageAwesome Width="18" Icon="ClockOutline" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="Запланировать"/>
+                                    </DockPanel>
+                                </Button>
+                                <Button HorizontalContentAlignment="Stretch">
+                                    <DockPanel Margin="20,0">
+                                        <fa:ImageAwesome Width="18" Icon="Send" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="Отправить"/>
+                                    </DockPanel>
+                                </Button>
+                                <Button HorizontalContentAlignment="Stretch">
+                                    <DockPanel Margin="20,0">
+                                        <fa:ImageAwesome Width="18" Icon="Train" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="Удалить"/>
+                                    </DockPanel>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Задания">
+                        <ListBox>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
+                                <GroupBox Header="Задание 1">
+                                    <StackPanel>
+                                        <TextBlock Text="Время"/>
+                                        <TextBlock Text="Сервер"/>
+                                        <TextBlock Text="Отправитель"/>
+                                        <TextBlock Text="Получатели"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
+                                <GroupBox Header="Задание 2">
+                                    <StackPanel>
+                                        <TextBlock Text="Время"/>
+                                        <TextBlock Text="Сервер"/>
+                                        <TextBlock Text="Отправитель"/>
+                                        <TextBlock Text="Получатели"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
+                                <GroupBox Header="Задание 3">
+                                    <StackPanel>
+                                        <TextBlock Text="Время"/>
+                                        <TextBlock Text="Сервер"/>
+                                        <TextBlock Text="Отправитель"/>
+                                        <TextBlock Text="Получатели"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Редактор писем"/>
+        </TabControl>
+    </DockPanel>
 </Window>
