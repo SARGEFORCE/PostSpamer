@@ -12,33 +12,44 @@
         Title="PostSpamer" Height="450" Width="803" Icon="mail.png">
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Создать"/>
-                <MenuItem Header="Открыть"/>
-                <MenuItem Header="Сохранить"/>
-                <Separator/>
-                <MenuItem Header="Выход" Click="ExitMenuItem_OnClick"/>
-            </MenuItem>
-            <MenuItem Header="Сервис">
-                <MenuItem Header="Параметры"/>
-            </MenuItem>
-            <MenuItem Header="Помощь">
-                <MenuItem Header="О программе" Click="AboutMenuItem_OnClick"/>
-                <MenuItem Header="Создатели"/>
-                <MenuItem Header="Поддержать проект"/>
-
-            </MenuItem>
-            <controls:TabSwitcher Height="18" Width="100" 
+        <DockPanel DockPanel.Dock="Top">
+            <Menu >
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Создать"/>
+                    <MenuItem Header="Открыть"/>
+                    <MenuItem Header="Сохранить"/>
+                    <Separator/>
+                    <MenuItem Header="Выход" Click="ExitMenuItem_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Средства">
+                    <MenuItem Header="Параметры"/>
+                </MenuItem>
+                <MenuItem Header="Справка">
+                    <MenuItem Header="О программе" Click="AboutMenuItem_OnClick"/>
+                    <MenuItem Header="Создатели"/>
+                    <MenuItem Header="Поддержать проект"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel Orientation="Horizontal"  DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <TextBlock Text="Туда-сюда:"
+                       VerticalAlignment="Top"/>
+                <controls:TabSwitcher Height="18" Width="100" 
                                   LeftButtonClick="TabSwitcher_OnLeftButtonClick" 
                                   RightButtonClick="TabSwitcher_OnRightButtonClick"
-                                  LeftButtonVisible="False"/>
-        </Menu>
+                                  LeftButtonVisible="False" 
+                                  HorizontalAlignment="Right" 
+                                  VerticalAlignment="Top"
+                                  />
+            </StackPanel>
+        </DockPanel>
 
         <StatusBar DockPanel.Dock="Bottom">
-            <TextBlock><Run Text="Готов к рассылке спама!"/></TextBlock>
-            <StatusBarItem Width="auto">
-                <ProgressBar Value="50" Width="220" Height ="10"/>
+            <TextBlock Text="Готов к рассылке спама!"/>
+
+            <StatusBarItem Width="auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                <ProgressBar Value="50" Height ="10"
+                             MinHeight="10" MinWidth="120"
+                             Margin="3,0"/>
             </StatusBarItem>
         </StatusBar>
 
