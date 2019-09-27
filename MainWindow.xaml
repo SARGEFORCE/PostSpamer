@@ -60,24 +60,19 @@
                     <ToolBarTray Grid.Row="0" Grid.ColumnSpan="2">
                         <!--======================================================-->
                         <ToolBar Band="0" BandIndex="0">
-                            <Label Width="85" Content="Отправители"/>
-                            <ComboBox MinWidth="75" MaxWidth="100" ItemsSource="{x:Static data:TestClass.Senders}" DisplayMemberPath="Name" SelectedIndex="0"/>
-
-                            <Button ToolTip="Редактировать">
-                                <fa:ImageAwesome Height="16" Icon="Edit"/>
-                            </Button>
-                            <Button ToolTip="Создать">
-                                <fa:ImageAwesome Height="16" Icon="Plus"/>
-                            </Button>
-                            <Button ToolTip="Удалить">
-                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
-                            </Button>
+                            <controls:Tool3Controller MinWidth="230" MaxWidth="400" 
+                                                      Items="{x:Static data:TestClass.Senders}"
+                                                      PanelName="Отправители"
+                                                      ViewPropertyPath="Name"
+                                                      SelectedIndex="0"/>
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="1">
-                            <Label Content="Серверы"/>
-                            <ComboBox MinWidth="75" MaxWidth="100" ItemsSource="{x:Static data:TestClass.Servers}" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
+                            <controls:Tool3Controller PanelName="Серверы"
+                                                      Items="{x:Static data:TestClass.Servers}"
+                                                      SelectedIndex="0"
+                                                      ViewPropertyPath="Name">
+                                <controls:Tool3Controller.ItemTemplate>
                                     <DataTemplate DataType="{x:Type data:Server}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}"/>
@@ -85,41 +80,23 @@
                                             <TextBlock Text="{Binding Port, StringFormat=:\{0\}}"/>
                                         </StackPanel>
                                     </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <Button ToolTip="Редактировать">
-                                <fa:ImageAwesome Height="16" Icon="Edit"/>
-                            </Button>
-                            <Button ToolTip="Создать">
-                                <fa:ImageAwesome Height="16" Icon="Plus"/>
-                            </Button>
-                            <Button ToolTip="Удалить">
-                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
-                            </Button>
+                                </controls:Tool3Controller.ItemTemplate>
+                            </controls:Tool3Controller>
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="2">
                             <Label Content="Перейти в планировщик:"/>
                             <Button Click="PlannerButton_Click">
-                                <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="DarkBlue"/>                                
+                                <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="DarkBlue"/>
                             </Button>
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar Band="1">
-                            <Label Width="85" Content="Получатели"/>
-                            <Button ToolTip="Редактировать">
-                                <fa:ImageAwesome Height="16" Icon="Edit"/>
-                            </Button>
-                            <Button ToolTip="Создать">
-                                <fa:ImageAwesome Height="16" Icon="Plus"/>
-                            </Button>
-                            <Button ToolTip="Удалить">
-                                <fa:ImageAwesome Height="16" Icon="Trash" Foreground="DarkRed"/>
-                            </Button>
+                            <controls:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" 
-                              ItemsSource="{Binding Recipients, Source={StaticResource DataBase}}"
+                    <!--ItemsSource="{Binding Recipients, Source={StaticResource DataBase}}"-->
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2"
                               GridLinesVisibility="Vertical" AlternatingRowBackground="DarkGray" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
