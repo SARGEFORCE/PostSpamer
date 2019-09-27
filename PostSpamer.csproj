@@ -91,6 +91,8 @@
     <Compile Include="library\Server.cs" />
     <Compile Include="library\TestClass.cs" />
     <Compile Include="library\Variables.cs" />
+    <Compile Include="MVVM\LCommands.cs" />
+    <Compile Include="MVVM\ViewModel.cs" />
     <Compile Include="PostSpamerDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

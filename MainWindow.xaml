@@ -106,7 +106,6 @@
                             <controls:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <!--ItemsSource="{Binding Recipients, Source={StaticResource DataBase}}"-->
                     <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2"
                               GridLinesVisibility="Vertical" AlternatingRowBackground="DarkGray" IsReadOnly="True">
                         <DataGrid.Columns>
