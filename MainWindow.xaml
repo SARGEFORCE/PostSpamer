@@ -7,9 +7,12 @@
         xmlns:data="clr-namespace:PostSpamer.library"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:db="clr-namespace:PostSpamer.library.Linq2SQL"
-        xmlns:controls="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
+        xmlns:ctrl="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
+        xmlns:View="clr-namespace:PostSpamer.View"
         mc:Ignorable="d"
-        Title="PostSpamer" Height="450" Width="803" Icon="mail.png">
+        Title="{Binding WindowTitle}" Height="450" Width="803" Icon="mail.png"
+        DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}">
+        
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
@@ -33,7 +36,7 @@
             <StackPanel Orientation="Horizontal"  DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <TextBlock Text="Туда-сюда:"
                        VerticalAlignment="Top"/>
-                <controls:TabSwitcher Height="18" Width="100" 
+                <ctrl:TabSwitcher Height="18" Width="100" 
                                   LeftButtonClick="TabSwitcher_OnLeftButtonClick" 
                                   RightButtonClick="TabSwitcher_OnRightButtonClick"
                                   LeftButtonVisible="False" 
@@ -56,9 +59,6 @@
         <TabControl Name="MainTabControl">
             <TabItem Header="Рассылка">
                 <Grid>
-                    <Grid.Resources>
-                        <db:PostSpamerDBDataContext x:Key="DataBase"/>
-                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="113*"/>
                         <ColumnDefinition Width="245*"/>
@@ -71,7 +71,7 @@
                     <ToolBarTray Grid.Row="0" Grid.ColumnSpan="2">
                         <!--======================================================-->
                         <ToolBar Band="0" BandIndex="0">
-                            <controls:Tool3Controller MinWidth="230" MaxWidth="400" 
+                            <ctrl:Tool3Controller MinWidth="230" MaxWidth="400" 
                                                       Items="{x:Static data:TestClass.Senders}"
                                                       PanelName="Отправители"
                                                       ViewPropertyPath="Name"
@@ -79,11 +79,11 @@
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="1">
-                            <controls:Tool3Controller PanelName="Серверы"
+                            <ctrl:Tool3Controller PanelName="Серверы"
                                                       Items="{x:Static data:TestClass.Servers}"
                                                       SelectedIndex="0"
                                                       ViewPropertyPath="Name">
-                                <controls:Tool3Controller.ItemTemplate>
+                                <ctrl:Tool3Controller.ItemTemplate>
                                     <DataTemplate DataType="{x:Type data:Server}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}"/>
@@ -91,8 +91,8 @@
                                             <TextBlock Text="{Binding Port, StringFormat=:\{0\}}"/>
                                         </StackPanel>
                                     </DataTemplate>
-                                </controls:Tool3Controller.ItemTemplate>
-                            </controls:Tool3Controller>
+                                </ctrl:Tool3Controller.ItemTemplate>
+                            </ctrl:Tool3Controller>
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="2">
@@ -103,17 +103,20 @@
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar Band="1">
-                            <controls:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
+                            <ctrl:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2"
-                              GridLinesVisibility="Vertical" AlternatingRowBackground="DarkGray" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <View:RecipientsView Grid.Column="0" Margin="5"/>
+                        <View:RecipientsEditor Grid.Column="1" Margin="5"/>
+                        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" 
+                                      HorizontalAlignment="Left" Width="2" 
+                                      Background="DarkRed"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Планировщик">
