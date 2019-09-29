@@ -7,13 +7,9 @@
         xmlns:data="clr-namespace:PostSpamer.library"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:db="clr-namespace:PostSpamer.library.Linq2SQL"
-        xmlns:ctrl="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
-        xmlns:view="clr-namespace:PostSpamer.View"
-        xmlns:cmd="clr-namespace:PostSpamer.Commands"
-    mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="450" Width="901" Icon="mail.png"
-        DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}">
-        
+        xmlns:controls="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
+        mc:Ignorable="d"
+        Title="PostSpamer" Height="450" Width="803" Icon="mail.png">
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
@@ -23,11 +19,7 @@
                     <MenuItem Header="Открыть"/>
                     <MenuItem Header="Сохранить"/>
                     <Separator/>
-                    <MenuItem Header="Выход">
-                        <MenuItem.Command>
-                            <cmd:AppCloseCommand/>
-                        </MenuItem.Command>
-                    </MenuItem>
+                    <MenuItem Header="Выход" Click="ExitMenuItem_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Средства">
                     <MenuItem Header="Параметры"/>
@@ -41,7 +33,7 @@
             <StackPanel Orientation="Horizontal"  DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <TextBlock Text="Туда-сюда:"
                        VerticalAlignment="Top"/>
-                <ctrl:TabSwitcher Height="18" Width="100" 
+                <controls:TabSwitcher Height="18" Width="100" 
                                   LeftButtonClick="TabSwitcher_OnLeftButtonClick" 
                                   RightButtonClick="TabSwitcher_OnRightButtonClick"
                                   LeftButtonVisible="False" 
@@ -64,6 +56,9 @@
         <TabControl Name="MainTabControl">
             <TabItem Header="Рассылка">
                 <Grid>
+                    <Grid.Resources>
+                        <db:PostSpamerDBDataContext x:Key="DataBase"/>
+                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="113*"/>
                         <ColumnDefinition Width="245*"/>
@@ -76,7 +71,7 @@
                     <ToolBarTray Grid.Row="0" Grid.ColumnSpan="2">
                         <!--======================================================-->
                         <ToolBar Band="0" BandIndex="0">
-                            <ctrl:Tool3Controller MinWidth="230" MaxWidth="400" 
+                            <controls:Tool3Controller MinWidth="230" MaxWidth="400" 
                                                       Items="{x:Static data:TestClass.Senders}"
                                                       PanelName="Отправители"
                                                       ViewPropertyPath="Name"
@@ -84,11 +79,11 @@
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="1">
-                            <ctrl:Tool3Controller PanelName="Серверы"
+                            <controls:Tool3Controller PanelName="Серверы"
                                                       Items="{x:Static data:TestClass.Servers}"
                                                       SelectedIndex="0"
                                                       ViewPropertyPath="Name">
-                                <ctrl:Tool3Controller.ItemTemplate>
+                                <controls:Tool3Controller.ItemTemplate>
                                     <DataTemplate DataType="{x:Type data:Server}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}"/>
@@ -96,8 +91,8 @@
                                             <TextBlock Text="{Binding Port, StringFormat=:\{0\}}"/>
                                         </StackPanel>
                                     </DataTemplate>
-                                </ctrl:Tool3Controller.ItemTemplate>
-                            </ctrl:Tool3Controller>
+                                </controls:Tool3Controller.ItemTemplate>
+                            </controls:Tool3Controller>
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar BandIndex="2">
@@ -108,20 +103,17 @@
                         </ToolBar>
                         <!--======================================================-->
                         <ToolBar Band="1">
-                            <ctrl:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
+                            <controls:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="7*"/>
-                            <ColumnDefinition Width="5*"/>
-                        </Grid.ColumnDefinitions>
-                        <view:RecipientsView Grid.Column="0" Margin="5"/>
-                        <view:RecipientsEditor Grid.Column="1" Margin="10"/>
-                        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" 
-                                      HorizontalAlignment="Left" Width="2" 
-                                      Background="DarkRed"/>
-                    </Grid>
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2"
+                              GridLinesVisibility="Vertical" AlternatingRowBackground="DarkGray" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Планировщик">

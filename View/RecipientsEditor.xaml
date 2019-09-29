@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="PostSpamer.View.RecipientsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PostSpamer.View"
+             mc:Ignorable="d"
+             DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}"
+             d:DesignHeight="450" Width="310">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>            
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="ID"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Email"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Описание"/>
+
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRecipient.Name}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRecipient.Address}"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedRecipient.Description}"/>
+
+        <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" 
+                     HorizontalAlignment="Center" VerticalAlignment="Top" Rows="1" Margin="0,7,0,0">
+            <Button Padding="15,7" Margin="5">Создать</Button>
+            <Button Padding="15,7" Margin="5" Command="{Binding SaveChangesCommand}">Сохранить</Button>
+        </UniformGrid>
+
+    </Grid>
+</UserControl>
