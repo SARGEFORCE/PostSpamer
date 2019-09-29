@@ -119,7 +119,9 @@
     <Compile Include="library\PostSpamerService.cs" />
     <Compile Include="library\Sender.cs" />
     <Compile Include="library\Server.cs" />
-    <Compile Include="library\Services\RecipientsDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemoryRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\IRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\Linq2SQL\Linq2SQLRecipientsDataProvider.cs" />
     <Compile Include="library\TestClass.cs" />
     <Compile Include="library\Variables.cs" />
     <Compile Include="MVVM\LCommands.cs" />

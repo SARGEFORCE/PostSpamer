@@ -1,7 +1,9 @@
 using GalaSoft.MvvmLight.Ioc;
 using CommonServiceLocator;
-using PostSpamer.library.Linq2SQL;
 using PostSpamer.library.Services;
+using PostSpamer.library.Linq2SQL;
+using PostSpamer.library.Services.InMemory;
+using PostSpamer.library.Services.Interfaces;
 
 namespace PostSpamer.ViewModel
 {
@@ -13,7 +15,8 @@ namespace PostSpamer.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             services.Register<MainWindowViewModel>();
-            services.Register<RecipientsDataProvider>();
+          //services.Register<IRecipientsDataProvider, InMemoryRecipientsDataProvider>(); //строка подключения провайдера для хранения списка реципиентов в памяти
+            services.Register<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>();
             services.Register(() => new PostSpamerDBDataContext());
         }
 

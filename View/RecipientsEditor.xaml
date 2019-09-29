@@ -33,7 +33,7 @@
         <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" 
                      HorizontalAlignment="Center" VerticalAlignment="Top" Rows="1" Margin="0,7,0,0">
             <Button Padding="15,7" Margin="5">Создать</Button>
-            <Button Padding="15,7" Margin="5">Сохранить</Button>
+            <Button Padding="15,7" Margin="5" Command="{Binding SaveChangesCommand}">Сохранить</Button>
         </UniformGrid>
 
     </Grid>

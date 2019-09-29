@@ -30,9 +30,9 @@ namespace PostSpamer.library.Linq2SQL
 		
     #region Определения метода расширяемости
     partial void OnCreated();
-    partial void InsertRecipients(Recipients instance);
-    partial void UpdateRecipients(Recipients instance);
-    partial void DeleteRecipients(Recipients instance);
+    partial void InsertRecipients(Recipient instance);
+    partial void UpdateRecipients(Recipient instance);
+    partial void DeleteRecipients(Recipient instance);
     #endregion
 		
 		public PostSpamerDBDataContext() : 
@@ -65,17 +65,17 @@ namespace PostSpamer.library.Linq2SQL
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Recipients> Recipients
+		public System.Data.Linq.Table<Recipient> Recipients
 		{
 			get
 			{
-				return this.GetTable<Recipients>();
+				return this.GetTable<Recipient>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Recipients")]
-	public partial class Recipients : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Recipient : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -102,7 +102,7 @@ namespace PostSpamer.library.Linq2SQL
     partial void OnDescriptionChanged();
     #endregion
 		
-		public Recipients()
+		public Recipient()
 		{
 			OnCreated();
 		}
