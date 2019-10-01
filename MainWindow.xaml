@@ -7,10 +7,12 @@
         xmlns:data="clr-namespace:PostSpamer.library"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:db="clr-namespace:PostSpamer.library.Linq2SQL"
-        xmlns:ctrl="clr-namespace:PostSpamer.controls" x:Name="SpamerWindow" x:Class="PostSpamer.MainWindow"
+        xmlns:ctrl="clr-namespace:PostSpamer.controls" 
+        x:Name="SpamerWindow" 
+        x:Class="PostSpamer.MainWindow"
         xmlns:view="clr-namespace:PostSpamer.View"
         xmlns:cmd="clr-namespace:PostSpamer.Commands"
-    mc:Ignorable="d"
+        mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="901" Icon="mail.png"
         DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}">
         
@@ -89,10 +91,10 @@
                                                       SelectedIndex="0"
                                                       ViewPropertyPath="Name">
                                 <ctrl:Tool3Controller.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type data:Server}">
+                                    <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}"/>
-                                            <TextBlock Text="{Binding Adress}" Margin="3,0,0,0" Opacity="0.6"/>
+                                            <TextBlock Text="{Binding Host}" Margin="3,0,0,0" Opacity="0.6"/>
                                             <TextBlock Text="{Binding Port, StringFormat=:\{0\}}"/>
                                         </StackPanel>
                                     </DataTemplate>

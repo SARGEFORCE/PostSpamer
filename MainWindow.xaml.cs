@@ -8,10 +8,7 @@ namespace PostSpamer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();            
-        }
+        public MainWindow() => InitializeComponent();
 
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {

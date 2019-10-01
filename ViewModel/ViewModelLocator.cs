@@ -14,10 +14,16 @@ namespace PostSpamer.ViewModel
             var services = SimpleIoc.Default;
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            services.Register<MainWindowViewModel>();
+            services
+                .TryRegister<IRecipientsDataProvider, InMemoryRecipientsDataProvider>()
+                .TryRegister<ISendersDataProvider, InMemorySendersDataProvider>()
+                .TryRegister<ISpamDataProvider, InMemorySpamDataProvider>();
+                
+                /*
+                Register<MainWindowViewModel>();
           //services.Register<IRecipientsDataProvider, InMemoryRecipientsDataProvider>(); //строка подключения провайдера для хранения списка реципиентов в памяти
             services.Register<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>();
-            services.Register(() => new PostSpamerDBDataContext());
+            services.Register(() => new PostSpamerDBDataContext());*/
         }
 
         public MainWindowViewModel MainVindowModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();

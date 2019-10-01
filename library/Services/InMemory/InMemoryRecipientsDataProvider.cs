@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PostSpamer.library.Entities;
 using PostSpamer.library.Services.Interfaces;
-using PostSpamer.library.Linq2SQL;
 
 namespace PostSpamer.library.Services.InMemory
 {
-    public class InMemoryRecipientsDataProvider : IRecipientsDataProvider
+    public class InMemoryRecipientsDataProvider : InMemoryDataProvider<Recipient>, IRecipientsDataProvider
     {
-        private readonly List<Recipient> _Recipients = new List<Recipient>();
-        public IEnumerable<Recipient> GetAll() => _Recipients;
-        public int Create(Recipient recipient)
+        public override void Edit(int Id, Recipient item)
         {
-            if (_Recipients.Contains(recipient)) return recipient.Id;
-            recipient.Id = _Recipients.Count == 0 ? 1 : _Recipients.Max(r=>r.Id) + 1;
-            _Recipients.Add(recipient);
-            return recipient.Id;
+            var _item = GetById(Id);
+            if (_item is null) return;
+            _item.Name = item.Name;
+            _item.Address = item.Address;
         }
-        public void SaveChanges() { }
     }
 }

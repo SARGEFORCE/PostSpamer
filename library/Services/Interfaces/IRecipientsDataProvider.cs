@@ -1,18 +1,7 @@
-﻿using PostSpamer.library.Linq2SQL;
-using System;
+﻿using PostSpamer.library.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PostSpamer.library.Services.Interfaces
 {
-    public interface IRecipientsDataProvider
-    {
-        IEnumerable<Recipient> GetAll();
-
-        int Create(Recipient recipient);
-
-        void SaveChanges();
-    }
+    public interface IRecipientsDataProvider : IDataProvider<Recipient> { }
 }
