@@ -118,6 +118,7 @@
     <Compile Include="library\Entities\RecipientsList.cs" />
     <Compile Include="library\Entities\ShedulerTask.cs" />
     <Compile Include="library\Entities\Spam.cs" />
+    <Compile Include="library\Entities\SpamList.cs" />
     <Compile Include="library\Linq2SQL\PostSpamerDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +143,7 @@
     <Compile Include="library\Services\Interfaces\IShedulerTaskDataProvider.cs" />
     <Compile Include="library\Services\Interfaces\ISpamDataProvider.cs" />
     <Compile Include="library\Services\Linq2SQL\Linq2SQLRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\StringEncoder.cs" />
     <Compile Include="library\TestClass.cs" />
     <Compile Include="library\Validat\RegEXValidat.cs" />
     <Compile Include="library\Variables.cs" />
@@ -161,6 +163,9 @@
     </Compile>
     <Compile Include="View\RecipientsView.xaml.cs">
       <DependentUpon>RecipientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpamEditor.xaml.cs">
+      <DependentUpon>SpamEditor.xaml</DependentUpon>
     </Compile>
     <Page Include="controls\TabSwitcher.xaml">
       <SubType>Designer</SubType>
@@ -187,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RecipientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpamEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

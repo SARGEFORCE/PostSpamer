@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}"
              d:DesignHeight="450" Width="310">
-    <Grid Margin="3" Validation.Error="OnDataValidationError">
+    <Grid Margin="3">
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5,2"/>

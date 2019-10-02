@@ -62,7 +62,7 @@ ListViewItemScheduler. Посередине должно быть поле, ку
 		c. При клике на кнопку «Отправить запланированно» нужно забирать информацию из ListView, передавать её в класс SchedulerClass в поле 
 Dictionary<DateTime, string> и обрабатывать так, как мы прописали на уроке.
 	2. Добавить UnitTest для метода getPassword проекта CodePasswordDLL.
-	a. Методы с тестами добавить в проект CodePasswordDLL.Test класс CodePasswordTest по аналогии с тестами для метода getCodPassword.
+		a. Методы с тестами добавить в проект CodePasswordDLL.Test класс CodePasswordTest по аналогии с тестами для метода getCodPassword.
 		b. Добавить в класс CodePasswordTest методы TestInitialize и TestCleanup.
 		c. Расширить метод Assert.AreEqual параметром с сообщением для output.
 		d. Добавить Debug.WriteLine внутри тестовых методов и посмотреть, как записываются текстовые сообщения

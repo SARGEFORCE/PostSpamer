@@ -3,19 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PostSpamer"
         xmlns:data="clr-namespace:PostSpamer.library"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:db="clr-namespace:PostSpamer.library.Linq2SQL"
-        xmlns:ctrl="clr-namespace:PostSpamer.controls" 
-        x:Name="SpamerWindow" 
+        xmlns:ctrl="clr-namespace:PostSpamer.controls"
+        x:Name="SpamerWindow"
         x:Class="PostSpamer.MainWindow"
         xmlns:view="clr-namespace:PostSpamer.View"
         xmlns:cmd="clr-namespace:PostSpamer.Commands"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="450" Width="901" Icon="mail.png"
+        Title="{Binding WindowTitle}" Height="450" Width="810" Icon="mail.png"
         DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}">
-
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
@@ -41,9 +38,9 @@
                 </MenuItem>
             </Menu>
             <StackPanel Orientation="Horizontal"  DockPanel.Dock="Right" HorizontalAlignment="Right">
-                <TextBlock Text="Туда-сюда:"
-                       VerticalAlignment="Top"/>
-                <ctrl:TabSwitcher Height="18" Width="100" 
+                <TextBlock Text="Переключатель"
+                       VerticalAlignment="Top" Margin="3"/>
+                <ctrl:TabSwitcher Height="18" Width="100" Margin="3"
                                   LeftButtonClick="TabSwitcher_OnLeftButtonClick" 
                                   RightButtonClick="TabSwitcher_OnRightButtonClick"
                                   LeftButtonVisible="False" 
@@ -56,10 +53,10 @@
         <StatusBar DockPanel.Dock="Bottom">
             <TextBlock Text="Готов к рассылке спама!"/>
 
-            <StatusBarItem Width="auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
-                <ProgressBar Value="50" Height ="10"
-                             MinHeight="10" MinWidth="120"
-                             Margin="3,0"/>
+            <StatusBarItem Width="auto"
+                           HorizontalContentAlignment="Stretch"
+                           VerticalContentAlignment="Stretch">
+                <ProgressBar Value="50" Height ="10" MinHeight="10" MinWidth="120" Margin="3,0"/>
             </StatusBarItem>
         </StatusBar>
 
@@ -102,14 +99,13 @@
                             </ctrl:Tool3Controller>
                         </ToolBar>
                         <!--======================================================-->
-                        <ToolBar BandIndex="2">
-                            <Label Content="Перейти в планировщик:"/>
-                            <Button Click="PlannerButton_Click">
+                        <ToolBar BandIndex="3">
+                            <Button Click="PlannerButton_Click" ToolTip="Перейти в планировщик">
                                 <fa:ImageAwesome Height="16" Icon="ClockOutline" Foreground="DarkBlue"/>
                             </Button>
                         </ToolBar>
                         <!--======================================================-->
-                        <ToolBar Band="1">
+                        <ToolBar BandIndex="2">
                             <ctrl:Tool3Controller PanelName="Получатели" ComboBoxVisibility="Collapsed"/>
                         </ToolBar>
                     </ToolBarTray>
@@ -190,7 +186,9 @@
                     </GroupBox>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Редактор писем"/>
+            <TabItem Header="Редактор писем">
+                <view:SpamEditor/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
