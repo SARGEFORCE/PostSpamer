@@ -1,9 +1,9 @@
 using GalaSoft.MvvmLight.Ioc;
 using CommonServiceLocator;
-using PostSpamer.library.Services;
-using PostSpamer.library.Linq2SQL;
 using PostSpamer.library.Services.InMemory;
 using PostSpamer.library.Services.Interfaces;
+using PostSpamer.library.Linq2SQL;
+using PostSpamer.library.Services;
 
 namespace PostSpamer.ViewModel
 {
@@ -13,17 +13,19 @@ namespace PostSpamer.ViewModel
         {
             var services = SimpleIoc.Default;
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            services
+            /*
+            services //пам€ть компа
+                .TryRegister<MainWindowViewModel>()
                 .TryRegister<IRecipientsDataProvider, InMemoryRecipientsDataProvider>()
                 .TryRegister<ISendersDataProvider, InMemorySendersDataProvider>()
                 .TryRegister<ISpamDataProvider, InMemorySpamDataProvider>();
-                
-                /*
-                Register<MainWindowViewModel>();
-          //services.Register<IRecipientsDataProvider, InMemoryRecipientsDataProvider>(); //строка подключени€ провайдера дл€ хранени€ списка реципиентов в пам€ти
-            services.Register<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>();
-            services.Register(() => new PostSpamerDBDataContext());*/
+            */
+            
+            services //база данных
+                .TryRegister<MainWindowViewModel>()
+                .TryRegister(() => new PostSpamerDBDataContext())
+                .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>();
+            
         }
 
         public MainWindowViewModel MainVindowModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();

@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PostSpamer.View"
+             xmlns:valid="clr-namespace:PostSpamer.library.Validat"
              mc:Ignorable="d"
              DataContext="{Binding MainVindowModel, Source={StaticResource Locator}}"
              d:DesignHeight="450" Width="310">
-    <Grid>
+    <Grid Margin="3" Validation.Error="OnDataValidationError">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -23,12 +24,33 @@
         <TextBlock Grid.Column="0" Grid.Row="0" Text="ID"/>
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя"/>
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Email"/>
-        <TextBlock Grid.Column="0" Grid.Row="3" Text="Описание"/>
 
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRecipient.Name}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRecipient.Address}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedRecipient.Description}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" 
+                 Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"/>
+        <TextBox Grid.Column="1" Grid.Row="2">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Right" Text="!" FontSize="18" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold"
+                                   Margin="3,0" ToolTip="{Binding AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=AdornedElement}"/>
+                        <Border Padding="2" BorderBrush="Red" BorderThickness="3" CornerRadius="3">
+                            <AdornedElementPlaceholder Name="AdornedElement"/>
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <TextBox.Text>
+                <Binding Path="SelectedRecipient.Address" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <valid:RegEXValidat Pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                            ErrorMessage="Неверный формат адреса!"/>
+                        <ExceptionValidationRule/>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <UniformGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" 
                      HorizontalAlignment="Center" VerticalAlignment="Top" Rows="1" Margin="0,7,0,0">

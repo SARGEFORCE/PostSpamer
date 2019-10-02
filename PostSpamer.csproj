@@ -143,6 +143,7 @@
     <Compile Include="library\Services\Interfaces\ISpamDataProvider.cs" />
     <Compile Include="library\Services\Linq2SQL\Linq2SQLRecipientsDataProvider.cs" />
     <Compile Include="library\TestClass.cs" />
+    <Compile Include="library\Validat\RegEXValidat.cs" />
     <Compile Include="library\Variables.cs" />
     <Compile Include="MVVM\LCommands.cs" />
     <Compile Include="MVVM\ViewModel.cs" />
