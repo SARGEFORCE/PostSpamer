@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{446A21A4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostSpamer.library.Tests", "..\PostSpamer.library.Tests\PostSpamer.library.Tests.csproj", "{3A64B20F-9E75-40D7-99DB-0891997E3917}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "..\Tests\ConsoleTestApp\ConsoleTestApp.csproj", "{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{3A64B20F-9E75-40D7-99DB-0891997E3917}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A64B20F-9E75-40D7-99DB-0891997E3917}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A64B20F-9E75-40D7-99DB-0891997E3917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3A64B20F-9E75-40D7-99DB-0891997E3917} = {446A21A4-AB02-41E9-B6E8-1337A15BDF7E}
+		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279} = {446A21A4-AB02-41E9-B6E8-1337A15BDF7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06468158-52FB-4061-8840-2F4F3DDAA08F}
