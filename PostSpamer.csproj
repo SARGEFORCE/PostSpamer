@@ -135,6 +135,7 @@
     <Compile Include="library\Services\InMemory\InMemoryServersDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryShedulerTaskDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemorySpamDataProvider.cs" />
+    <Compile Include="library\Services\SmtpPostSpamer.cs" />
     <Compile Include="library\Services\Interfaces\IDataProvider.cs" />
     <Compile Include="library\Services\Interfaces\IRecipientsDataProvider.cs" />
     <Compile Include="library\Services\Interfaces\IRecipientsListDataProvider.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="library\Services\Interfaces\ISpamDataProvider.cs" />
     <Compile Include="library\Services\Linq2SQL\Linq2SQLRecipientsDataProvider.cs" />
     <Compile Include="library\Services\StringEncoder.cs" />
+    <Compile Include="library\Services\XmlSerializerPool.cs" />
     <Compile Include="library\TestClass.cs" />
     <Compile Include="library\Validat\RegEXValidat.cs" />
     <Compile Include="library\Variables.cs" />
