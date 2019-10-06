@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostSpamer", "PostSpamer.cs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{446A21A4-AB02-41E9-B6E8-1337A15BDF7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostSpamer.library.Tests", "..\PostSpamer.library.Tests\PostSpamer.library.Tests.csproj", "{3A64B20F-9E75-40D7-99DB-0891997E3917}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostSpamer.library.Tests", "PostSpamer.library.Tests\PostSpamer.library.Tests.csproj", "{3A64B20F-9E75-40D7-99DB-0891997E3917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "..\Tests\ConsoleTestApp\ConsoleTestApp.csproj", "{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "Tests\ConsoleTestApp\ConsoleTestApp.csproj", "{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
