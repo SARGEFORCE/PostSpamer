@@ -111,6 +111,14 @@
     <Compile Include="controls\Tool3Controller.xaml.cs">
       <DependentUpon>Tool3Controller.xaml</DependentUpon>
     </Compile>
+    <Compile Include="library\Entities\BaseEntity.cs" />
+    <Compile Include="library\Entities\HumanEntity.cs" />
+    <Compile Include="library\Entities\NamedEntity.cs" />
+    <Compile Include="library\Entities\Recipient.cs" />
+    <Compile Include="library\Entities\RecipientsList.cs" />
+    <Compile Include="library\Entities\ShedulerTask.cs" />
+    <Compile Include="library\Entities\Spam.cs" />
+    <Compile Include="library\Entities\SpamList.cs" />
     <Compile Include="library\Linq2SQL\PostSpamerDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,12 +126,26 @@
     </Compile>
     <Compile Include="library\PostSheduler.cs" />
     <Compile Include="library\PostSpamerService.cs" />
-    <Compile Include="library\Sender.cs" />
-    <Compile Include="library\Server.cs" />
+    <Compile Include="library\Entities\Sender.cs" />
+    <Compile Include="library\Entities\Server.cs" />
+    <Compile Include="library\Services\InMemory\InMemoryDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemoryRecipientsListDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemorySendersDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemoryServersDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemoryShedulerTaskDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\InMemorySpamDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\IDataProvider.cs" />
     <Compile Include="library\Services\Interfaces\IRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\IRecipientsListDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\ISendersDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\IServersDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\IShedulerTaskDataProvider.cs" />
+    <Compile Include="library\Services\Interfaces\ISpamDataProvider.cs" />
     <Compile Include="library\Services\Linq2SQL\Linq2SQLRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\StringEncoder.cs" />
     <Compile Include="library\TestClass.cs" />
+    <Compile Include="library\Validat\RegEXValidat.cs" />
     <Compile Include="library\Variables.cs" />
     <Compile Include="MVVM\LCommands.cs" />
     <Compile Include="MVVM\ViewModel.cs" />
@@ -134,12 +156,16 @@
     </Compile>
     <Compile Include="Spamer.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SimpleIOCExtentions.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\RecipientsEditor.xaml.cs">
       <DependentUpon>RecipientsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RecipientsView.xaml.cs">
       <DependentUpon>RecipientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpamEditor.xaml.cs">
+      <DependentUpon>SpamEditor.xaml</DependentUpon>
     </Compile>
     <Page Include="controls\TabSwitcher.xaml">
       <SubType>Designer</SubType>
@@ -166,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RecipientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpamEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,5 +273,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

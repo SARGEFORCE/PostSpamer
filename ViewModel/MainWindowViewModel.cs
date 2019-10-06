@@ -1,10 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using PostSpamer.library.Linq2SQL;
-using PostSpamer.library.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using PostSpamer.library.Services.Interfaces;
+using PostSpamer.library.Entities;
 
 namespace PostSpamer.ViewModel
 {
