@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Concurrent;
 
 namespace ConsoleTestApp
 {
@@ -151,54 +152,108 @@ namespace ConsoleTestApp
     #endregion
 
     #region CSV в потоке
+    //class Program
+    //{
+    //    static ConcurrentQueue<string[]> fields = new ConcurrentQueue<string[]>();
+    //    static void Main(string[] args)
+    //    {
+    //        Thread ThreadParse = new Thread(new ThreadStart(CsvFileParser));
+    //        Thread ThreadWrite = new Thread(new ThreadStart(CsvToTxt));
+
+    //        ThreadParse.Start(); Console.WriteLine("Поток 1 стартовал\n\n");
+    //        while (ThreadParse.IsAlive){ Thread.Sleep (100); }
+    //        ThreadWrite.Start(); Console.WriteLine("Поток 2 стартовал\n\n");
+
+    //        Console.WriteLine("Все потоки завершились с кодом 0, проверьте файл txt, до свидания!\n\n");
+    //        Console.ReadKey();
+    //    }
+
+    //    static void CsvFileParser()
+    //    {
+    //        string path = @"Test.csv";
+    //        using (TextFieldParser parser = new TextFieldParser(path))
+    //        {
+    //            parser.TextFieldType = FieldType.Delimited;
+    //            parser.SetDelimiters(";", ",");                
+    //            while (!parser.EndOfData)
+    //            {
+    //                fields.Enqueue(parser.ReadFields());
+    //            }                
+    //        }
+    //    }
+
+    //    static void CsvToTxt()
+    //    {
+    //        string path = @"Test.txt";
+    //        using (StreamWriter SW = new StreamWriter(path))
+    //        {
+    //            Console.OutputEncoding = Encoding.UTF8;
+    //            foreach (string[] lines in fields)
+    //            {
+    //                foreach (string field in lines)
+    //                {
+    //                    SW.Write($"{field}\t ");
+    //                    Console.Write($"{field}\t ");
+    //                }
+    //                SW.WriteLine();
+    //                Console.WriteLine();
+    //            }
+    //        }
+    //    }
+    //}
+    #endregion
     class Program
-    {             
-        static List<string[]> fields = new List<string[]>();
+    {
+        static Random rand = new Random();
+
+        static int[,,] matrix_1, matrix_2, matrix_3;
+        static DateTime time;
+
+        static int N = 200; //размерность матриц
+
         static void Main(string[] args)
         {
-            Thread ThreadParse = new Thread(new ThreadStart(CsvFileParser));
-            Thread ThreadWrite = new Thread(new ThreadStart(CsvToTxt));
+            matrix_1 = new int[N, N, N];
+            matrix_2 = new int[N, N, N];
+            matrix_3 = new int[N, N, N];
 
-            ThreadParse.Start(); Console.WriteLine("Поток 1 стартовал\n\n");
-            while (ThreadParse.IsAlive){ Thread.Sleep (100); }
-            ThreadWrite.Start(); Console.WriteLine("Поток 2 стартовал\n\n");
+            time = DateTime.Now;
 
-            Console.WriteLine("Все потоки завершились с кодом 0, проверьте файл txt, до свидания!\n\n");
-            Console.ReadKey();
-        }
-
-        static void CsvFileParser()
-        {
-            string path = @"Test.csv";
-            using (TextFieldParser parser = new TextFieldParser(path))
+            for (int i = 0; i < N; i++)
             {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(";", ",");                
-                while (!parser.EndOfData)
+                for (int j = 0; j < N; j++)
                 {
-                    fields.Add(parser.ReadFields());
-                }                
-            }
-        }
-
-        static void CsvToTxt()
-        {
-            string path = @"Test.txt";
-            using (StreamWriter SW = new StreamWriter(path))
-            {
-                Console.OutputEncoding = Encoding.UTF8;
-                foreach (string[] lines in fields)
-                {
-                    foreach (string field in lines)
+                    for (int o = 0; o < N; o++)
                     {
-                        SW.Write($"{field}\t ");
-                        Console.Write($"{field}\t ");
+                        matrix_1[i, j, o] = rand.Next(0, 9);
+                        matrix_2[i, j, o] = rand.Next(0, 9);
                     }
-                    SW.WriteLine();
-                    Console.WriteLine();
                 }
             }
+
+            Parallel.For(0, N, (i, state) =>
+            {
+                Parallel.For(0, N, (j, state_b) =>
+                {
+                    for (int o = 0; o < N; o++)
+                    {
+                        matrix_3[i, j, o] = matrix_1[i, j, o] * matrix_2[i, j, o];
+                    }
+                });
+            });
+
+            Console.WriteLine("Посчитано за {0} milliseconds",(DateTime.Now - time).TotalMilliseconds);
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    for (int j = 0; j < 100; j++)
+            //    {
+            //        Console.Write(matrix_2[i, j]);
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            Console.ReadKey();
         }
     }
-    #endregion
 }
