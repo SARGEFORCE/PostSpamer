@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PostSpamer.library.Entities
 {
-    public class SpamList
+    public class SpamList : BaseEntity
     {
+        [Required]
         public List<Spam> Spams { get; set; }
     }
 }

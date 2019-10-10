@@ -209,7 +209,7 @@ namespace ConsoleTestApp
         static int[,,] matrix_1, matrix_2, matrix_3;
         static DateTime time;
 
-        static int N = 200; //размерность матриц
+        static int N = 500; //размерность матриц
 
         static void Main(string[] args)
         {
@@ -243,16 +243,6 @@ namespace ConsoleTestApp
             });
 
             Console.WriteLine("Посчитано за {0} milliseconds",(DateTime.Now - time).TotalMilliseconds);
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    for (int j = 0; j < 100; j++)
-            //    {
-            //        Console.Write(matrix_2[i, j]);
-            //    }
-            //    Console.WriteLine();
-            //}
-
             Console.ReadKey();
         }
     }
