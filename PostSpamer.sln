@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostSpamer.library.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "Tests\ConsoleTestApp\ConsoleTestApp.csproj", "{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEFDB", "Tests\TestEFDB\TestEFDB.csproj", "{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3A64B20F-9E75-40D7-99DB-0891997E3917} = {446A21A4-AB02-41E9-B6E8-1337A15BDF7E}
 		{4AC9EF7D-0C37-4E43-BFC6-3A7C4CC2B279} = {446A21A4-AB02-41E9-B6E8-1337A15BDF7E}
+		{C4324A0E-E1D4-4E91-A971-E305FFA6C1F7} = {446A21A4-AB02-41E9-B6E8-1337A15BDF7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06468158-52FB-4061-8840-2F4F3DDAA08F}

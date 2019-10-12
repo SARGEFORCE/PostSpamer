@@ -4,6 +4,7 @@ using PostSpamer.library.Services.InMemory;
 using PostSpamer.library.Services.Interfaces;
 using PostSpamer.library.Linq2SQL;
 using PostSpamer.library.Services;
+using PostSpamer.library.EF;
 
 namespace PostSpamer.ViewModel
 {
@@ -20,11 +21,12 @@ namespace PostSpamer.ViewModel
                 .TryRegister<ISendersDataProvider, InMemorySendersDataProvider>()
                 .TryRegister<ISpamDataProvider, InMemorySpamDataProvider>();
             */
-            
+
             services //база данных
                 .TryRegister<MainWindowViewModel>()
                 .TryRegister(() => new PostSpamerDBDataContext())
-                .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>();
+                .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>()
+                .TryRegister(() => new PostSpamerDB());
             
         }
 

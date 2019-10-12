@@ -1,8 +1,11 @@
-﻿Updatenamespace PostSpamer.library.EF.Migrations
+﻿using System;
+using System.Data.Entity.Migrations;
+
+namespace PostSpamer.library.EF.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
+
+    //Add-Migration Initial -StartUpProjectName PostSpamer
+    //Update-Database -StartUpProjectName PostSpamer
     public partial class Initial : DbMigration
     {
         public override void Up()
