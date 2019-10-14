@@ -2,5 +2,5 @@
 
 namespace PostSpamer.library.Services.Interfaces
 {
-    public interface IShedulerTaskDataProvider : IDataProvider<ShedulerTask> { }
+    public interface IShedulerTaskDataProvider : IDataProvider<SchedulerTask> { }
 }

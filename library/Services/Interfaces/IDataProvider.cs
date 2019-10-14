@@ -5,10 +5,10 @@ namespace PostSpamer.library.Services.Interfaces
     public interface IDataProvider<T>
     {
         IEnumerable<T> GetAll();
-        T GetById(int Id);
+        T GetById(int id);
         int Create(T item);
-        void Edit(int Id, T item);
-        bool Remove(int Id);
+        void Edit(int id, T item);
+        bool Remove(int id);
         void SaveChanges();
     }
 }

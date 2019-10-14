@@ -5,6 +5,7 @@ using PostSpamer.library.Services.Interfaces;
 using PostSpamer.library.Linq2SQL;
 using PostSpamer.library.Services;
 using PostSpamer.library.EF;
+using PostSpamer.library.Services.EF;
 
 namespace PostSpamer.ViewModel
 {
@@ -26,7 +27,9 @@ namespace PostSpamer.ViewModel
                 .TryRegister<MainWindowViewModel>()
                 .TryRegister(() => new PostSpamerDBDataContext())
                 .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>()
-                .TryRegister(() => new PostSpamerDB());
+                .TryRegister<MemoryDataContext>()
+                .TryRegister<EFDataContextProvider>();
+                //.TryRegister(() => new PostSpamerDB());
             
         }
 

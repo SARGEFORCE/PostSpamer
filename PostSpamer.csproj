@@ -144,6 +144,11 @@
     <Compile Include="library\PostSpamerService.cs" />
     <Compile Include="library\Entities\Sender.cs" />
     <Compile Include="library\Entities\Server.cs" />
+    <Compile Include="library\Services\EF\EFDataContextProvider.cs" />
+    <Compile Include="library\Services\EF\EFDataProvider.cs" />
+    <Compile Include="library\Services\EF\EFDataProvider_2.cs" />
+    <Compile Include="library\Services\EF\EFRecipientsDataProvider.cs" />
+    <Compile Include="library\Services\EF\EFSendersDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryRecipientsDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryRecipientsListDataProvider.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="library\Services\InMemory\InMemoryServersDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemoryShedulerTaskDataProvider.cs" />
     <Compile Include="library\Services\InMemory\InMemorySpamDataProvider.cs" />
+    <Compile Include="library\Services\InMemory\MemoryDataContext.cs" />
     <Compile Include="library\Services\SmtpPostSpamer.cs" />
     <Compile Include="library\Services\Interfaces\IDataProvider.cs" />
     <Compile Include="library\Services\Interfaces\IRecipientsDataProvider.cs" />

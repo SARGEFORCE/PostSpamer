@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PostSpamer.library.Entities
 {
-    public class ShedulerTask : BaseEntity
+    public class SchedulerTask : BaseEntity
     {
         public DateTime Time { get; set; }
         [Required]
